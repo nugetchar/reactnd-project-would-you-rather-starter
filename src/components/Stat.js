@@ -3,7 +3,7 @@ import './Stat.css';
 export default function Stat(props) {
   const { stat } = props;
   return (
-    <div>
+    <div className="stat">
       <div className="stat-avatar">
         <figure>
           <img src={`../../${stat.avatarURL}`} alt={`Avatar of ${stat.name}`} />

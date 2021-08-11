@@ -1,14 +1,17 @@
 import { connect } from "react-redux";
 import Stat from "./Stat.js";
+import './LeaderBoard.css';
 
 function LeaderBoard(props) {
   const { stats } = props;
   return (
     <>
       <h2>LeaderBoard</h2>
+      <section className="leaderboard">
       {stats.sort((a, b) => b.score - a.score).map((stat) => (
         <Stat key={stat.id} stat={stat} />
       ))}
+      </section>
     </>
   );
 }

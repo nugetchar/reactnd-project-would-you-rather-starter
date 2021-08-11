@@ -26,7 +26,7 @@ function Nav(props) {
           </NavLink>
         </li>
         <li>
-          Hello {user.name}!<button onClick={handleLogout}>Logout</button>
+          Hello {user.name}! <button onClick={handleLogout}>Logout</button>
         </li>
       </ul>
     </nav>

@@ -1,7 +1,7 @@
 import { showLoading } from "react-redux-loading-bar";
 import { _saveQuestion, _saveQuestionAnswer} from '../api/_DATA';
 import { nextUrl } from "./routing";
-import { addQuestionUser } from "./users";
+import { addQuestionUser, toggleAnswered } from "./users";
 
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const TOGGLE_VOTE_QUESTION = 'VOTE_QUESTION';
@@ -34,8 +34,12 @@ export function handleVote(authedUser, qid, answer) {
     return (dispatch) => {
         dispatch(showLoading());
         dispatch(toggleVote(authedUser, qid, answer));
+        dispatch(toggleAnswered(authedUser, qid, answer));
         _saveQuestionAnswer({authedUser, qid, answer})
-        .catch(() => dispatch(toggleVote(authedUser, qid, answer)));
+        .catch(() => {
+            dispatch(toggleVote(authedUser, qid, answer));
+            dispatch(toggleAnswered(authedUser, qid, answer));
+        });
     }
 }
 
@@ -46,7 +50,7 @@ export function handleSaveQuestion(optionOneText, optionTwoText, author) {
         .then((question) => {
             dispatch(createQuestion(question));
             dispatch(addQuestionUser(author, question.id));
-            dispatch(nextUrl(`/question/${question.id}`));
+            dispatch(nextUrl(`/`));
         })
         .catch(() => alert(`Error trying to save the question. Please try again.`))
     }
