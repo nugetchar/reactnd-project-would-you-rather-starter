@@ -1,0 +1,8 @@
+.stat-avatar {
+    width: 200px;
+}
+
+.stat-avatar img {
+    width: 100%;
+    height: auto;
+}

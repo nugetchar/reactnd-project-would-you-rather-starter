@@ -1,0 +1,22 @@
+.excerpt-container {
+    max-width: 400px;
+    margin: 4px auto;
+    border: 1px solid black;
+}
+
+.excerpt {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.excerpt-title {
+    text-align: center;
+}
+.excerpt-avatar {
+    width: 100%;
+    height: 100px;
+}
+
+button {
+    cursor: pointer;
+}

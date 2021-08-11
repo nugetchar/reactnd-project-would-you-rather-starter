@@ -1,0 +1,42 @@
+.question-container {
+    max-width: 400px;
+    margin: 4px auto;
+    border: 1px solid black;
+    padding: 16px;
+}
+
+.question-title {
+    text-align: center;
+}
+
+.question {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.question-content p {
+    text-align: center;
+}
+
+figure {
+    margin: 16px;
+}
+
+.avatar {
+    width: 100px;
+    height: auto;
+}
+
+.question-form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.question-submit {
+    margin: 16px;
+}
+
+.choosen-option {
+    background-color: blue;
+    color: white;
+}

@@ -1,0 +1,11 @@
+.add-question-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+}
+
+.add-question-form > input, .add-question-form > button {
+    height: 40px;
+    margin: 8px;
+}
