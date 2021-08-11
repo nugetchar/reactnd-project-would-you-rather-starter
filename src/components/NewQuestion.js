@@ -1,6 +1,5 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import { handleSaveQuestion } from "../actions/questions";
 import './NewQuestion.css';
 
@@ -13,8 +12,9 @@ class NewQuestion extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { optionOne, optionTwo } = this.state;
-        const { dispatch, authedUser } = this.props;
+        const { dispatch, authedUser, history } = this.props;
         dispatch(handleSaveQuestion(optionOne, optionTwo, authedUser));
+        history.push('/');
     }
 
     handleChange = (e, option) => {
@@ -23,12 +23,6 @@ class NewQuestion extends Component {
 
     render() {
         const { optionOne, optionTwo } = this.state;
-        const { nextUrl } = this.props;
-
-        if (nextUrl) {
-            return (<Redirect to={nextUrl}/>);
-        }
-
         return (
             <>
                 <h2>Add a question</h2>
@@ -36,17 +30,16 @@ class NewQuestion extends Component {
                 <form className="add-question-form" onSubmit={this.handleSubmit}>
                     <input type="text" value={optionOne} onChange={(e) => this.handleChange(e, 'optionOne')} />
                     <input type="text" value={optionTwo} onChange={(e) => this.handleChange(e, 'optionTwo')} />
-                    <button type="submit">Add Question</button>
+                    <button type="submit" disabled={!optionOne || !optionTwo}>Add Question</button>
                 </form>
             </>
         )
     }
 }
 
-function mapStateToProps({ authedUser, routing: { nextUrl } }) {
+function mapStateToProps({ authedUser }) {
     return {
         authedUser,
-        nextUrl
     }
 }
 

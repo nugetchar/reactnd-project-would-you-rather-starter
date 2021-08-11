@@ -1,6 +1,5 @@
-import { showLoading } from "react-redux-loading-bar";
+import { hideLoading, showLoading } from "react-redux-loading-bar";
 import { _saveQuestion, _saveQuestionAnswer} from '../api/_DATA';
-import { nextUrl } from "./routing";
 import { addQuestionUser, toggleAnswered } from "./users";
 
 export const GET_QUESTIONS = 'GET_QUESTIONS';
@@ -39,7 +38,8 @@ export function handleVote(authedUser, qid, answer) {
         .catch(() => {
             dispatch(toggleVote(authedUser, qid, answer));
             dispatch(toggleAnswered(authedUser, qid, answer));
-        });
+        })
+        .finally(() => dispatch(hideLoading()));
     }
 }
 
@@ -50,8 +50,8 @@ export function handleSaveQuestion(optionOneText, optionTwoText, author) {
         .then((question) => {
             dispatch(createQuestion(question));
             dispatch(addQuestionUser(author, question.id));
-            dispatch(nextUrl(`/`));
         })
         .catch(() => alert(`Error trying to save the question. Please try again.`))
+        .finally(() => dispatch(hideLoading()))
     }
 }
